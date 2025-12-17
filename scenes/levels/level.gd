@@ -1,4 +1,5 @@
 extends Node2D
+#LEVEL
 
 var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
 
