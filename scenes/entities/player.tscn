@@ -1,28 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ed60lwykumhf"]
+[gd_scene load_steps=10 format=3 uid="uid://ed60lwykumhf"]
 
 [ext_resource type="Script" uid="uid://okovnpx1c2eo" path="res://scenes/entities/player.gd" id="1_ucweq"]
 [ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://graphics/characters/player.png" id="2_08t41"]
+[ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://graphics/ui/crosshair.png" id="3_1ie0h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qees"]
 radius = 13.0
 height = 52.0
-
-[sub_resource type="Animation" id="Animation_08t41"]
-resource_name = "run"
-length = 1.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Legs:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9975054, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [9, 10, 11, 12, 13, 14, 15, 16]
-}
 
 [sub_resource type="Animation" id="Animation_1ie0h"]
 length = 0.001
@@ -71,6 +55,23 @@ tracks/0/keys = {
 "values": [16, 17]
 }
 
+[sub_resource type="Animation" id="Animation_08t41"]
+resource_name = "run"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9975054, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_42nxq"]
 _data = {
 &"RESET": SubResource("Animation_1ie0h"),
@@ -101,3 +102,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_42nxq")
 }
 autoplay = "run"
+
+[node name="Torso" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_08t41")
+hframes = 8
+vframes = 3
+
+[node name="Marker" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_1ie0h")
