@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 var speed: int = 200
 var direction: Vector2
-@export var jump_strength: float = 400
+var health = 100
+
+@export var jump_strength: float = 500
 @export var gravity: float = 1220
 signal shoot(pos: Vector2, dir: Vector2)
 const gun_directions: Dictionary = {

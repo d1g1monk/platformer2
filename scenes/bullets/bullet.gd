@@ -13,3 +13,7 @@ func setup(pos: Vector2, dir: Vector2):
 func _physics_process(delta: float) -> void:
     position += direction * 230 * delta
     
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    queue_free()
