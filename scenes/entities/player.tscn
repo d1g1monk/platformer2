@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ed60lwykumhf"]
+[gd_scene load_steps=11 format=3 uid="uid://ed60lwykumhf"]
 
 [ext_resource type="Script" uid="uid://okovnpx1c2eo" path="res://scenes/entities/player.gd" id="1_ucweq"]
 [ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://graphics/characters/player.png" id="2_08t41"]
 [ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://graphics/ui/crosshair.png" id="3_1ie0h"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="4_42nxq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qees"]
 radius = 9.0
@@ -117,3 +118,6 @@ vframes = 3
 [node name="Marker" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_1ie0h")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("4_42nxq")

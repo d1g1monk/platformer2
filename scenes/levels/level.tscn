@@ -3747,10 +3747,22 @@ tile_set = SubResource("TileSet_ouxo3")
 position = Vector2(117, 197)
 
 [node name="Drone" parent="Entities" instance=ExtResource("5_urvlt")]
-position = Vector2(233, 132)
+position = Vector2(230, 136)
+
+[node name="Drone2" parent="Entities" instance=ExtResource("5_urvlt")]
+position = Vector2(267, 151)
+
+[node name="Drone3" parent="Entities" instance=ExtResource("5_urvlt")]
+position = Vector2(259, 102)
 
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+energy = 0.53
+blend_mode = 2
+shadow_enabled = true
 
 [connection signal="shoot" from="Entities/Player" to="." method="_on_player_shoot"]
