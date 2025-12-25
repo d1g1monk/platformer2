@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://umpw2jscxpwk"]
+
+[ext_resource type="Script" uid="uid://c1lxecouel1u5" path="res://scenes/camera/camera_manager.gd" id="1_bqchd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CameraSystem" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="CameraSystem" node_paths=PackedStringArray("cam")]
+process_mode = 3
+script = ExtResource("1_bqchd")
+cam = NodePath("../MainCamera")
+
+[node name="MainCamera" type="Camera2D" parent="CameraSystem" groups=["MainCamera"]]
+unique_name_in_owner = true
+process_mode = 3
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 2560
+limit_bottom = 1440
+rotation_smoothing_enabled = true

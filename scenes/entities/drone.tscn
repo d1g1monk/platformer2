@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://jolhvsfm1d1o"]
+[gd_scene load_steps=27 format=3 uid="uid://jolhvsfm1d1o"]
 
 [ext_resource type="Texture2D" uid="uid://vyr0ks75oxum" path="res://graphics/characters/drone.png" id="1_gs6nb"]
 [ext_resource type="Script" uid="uid://b5evlgig6idc" path="res://scenes/entities/drone.gd" id="1_n87ok"]
@@ -50,9 +50,6 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in55t"]
 size = Vector2(24, 16)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xcp44"]
-radius = 19.104973
 
 [sub_resource type="Animation" id="Animation_xcp44"]
 resource_name = " explosion"
@@ -199,24 +196,13 @@ visible = false
 shape = SubResource("RectangleShape2D_in55t")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea"]
-visible = false
 position = Vector2(0, -6.5694427)
 scale = Vector2(6.5104165, 7.5694447)
 polygon = PackedVector2Array(-12, -8, -12, 10, 12, 10, 12, -8)
-
-[node name="ExplosionArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
-visible = false
-shape = SubResource("CircleShape2D_xcp44")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -247,4 +233,3 @@ volume_db = -14.745
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]

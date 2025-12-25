@@ -1,0 +1,72 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://c62urnor8kcoj"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_rfkxu"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+parameter_name = "ColorParameter2"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_d6bb2"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_aigiv"]
+parameter_name = "FloatParameter"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_dttbf"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_w2q5m"]
+expanded_output_ports = [0]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 ColorParameter2 : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform float FloatParameter;
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter2;
+
+
+// Input:3
+	vec4 n_out3p0 = COLOR;
+
+
+// FloatParameter:4
+	float n_out4p0 = FloatParameter;
+
+
+// Mix:5
+	vec3 n_out5p0 = mix(vec3(n_out2p0.xyz), vec3(n_out3p0.xyz), vec3(n_out4p0));
+
+
+// Output:0
+	COLOR.rgb = n_out5p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(840, 220)
+nodes/vertex/2/node = SubResource("VisualShaderNodeColorParameter_w2q5m")
+nodes/vertex/2/position = Vector2(140, 120)
+nodes/fragment/0/position = Vector2(880, 520)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_rfkxu")
+nodes/fragment/2/position = Vector2(-180, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_d6bb2")
+nodes/fragment/3/position = Vector2(-200, 920)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_aigiv")
+nodes/fragment/4/position = Vector2(-180, 1460)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_dttbf")
+nodes/fragment/5/position = Vector2(460, 740)
+nodes/fragment/connections = PackedInt32Array(5, 0, 0, 0, 4, 0, 5, 2, 2, 0, 5, 0, 3, 0, 5, 1)

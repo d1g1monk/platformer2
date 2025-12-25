@@ -1,0 +1,143 @@
+[gd_scene load_steps=14 format=3 uid="uid://x0alvnf1e7y1"]
+
+[ext_resource type="Script" uid="uid://xfmhcywb6n2k" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://graphics/characters/player.png" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://graphics/ui/crosshair.png" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://dwccsx4wr5m4x" path="res://scenes/player/camera_2d.gd" id="3_p47bc"]
+[ext_resource type="Script" uid="uid://c1lxecouel1u5" path="res://scenes/camera/camera_manager.gd" id="5_75vfm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gmlin"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_p47bc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_gmlin"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_lvxji"]
+resource_name = "run"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75vfm"]
+_data = {
+&"RESET": SubResource("Animation_p47bc"),
+&"idle": SubResource("Animation_gmlin"),
+&"jump": SubResource("Animation_dovo2"),
+&"run": SubResource("Animation_lvxji")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_8afob")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gmlin")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+shape = SubResource("CapsuleShape2D_x7p2l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_75vfm")
+}
+
+[node name="Legs" type="Sprite2D" parent="."]
+texture = ExtResource("2_dovo2")
+hframes = 8
+vframes = 3
+frame = 16
+
+[node name="Torso" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_dovo2")
+hframes = 8
+vframes = 3
+
+[node name="Marker" type="Sprite2D" parent="."]
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("3_gmlin")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, 3)
+energy = 0.58
+texture = ExtResource("3_lvxji")
+
+[node name="CameraSystem" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="CameraSystem"]
+script = ExtResource("5_75vfm")
+
+[node name="MainCamera2" type="Camera2D" parent="CameraSystem" groups=["MainCamera"]]
+zoom = Vector2(5, 5)
+limit_left = 0
+limit_top = 0
+limit_right = 2560
+limit_bottom = 1440
+rotation_smoothing_enabled = true
+script = ExtResource("3_p47bc")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://fc2wv7ie57cj"]
+
+[ext_resource type="Script" uid="uid://m60awgp2qpf3" path="res://scenes/level.gd" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://bn1ulapyv8s8" path="res://scenes/world.tscn" id="2_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://bmsevaxxb2io3" path="res://scenes/canvas_layer.tscn" id="3_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://x0alvnf1e7y1" path="res://scenes/player/player.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://3ht45kts8my8" path="res://scenes/cam/camera_manager.tscn" id="6_2r41h"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_mx8sn")
+
+[node name="World" parent="." instance=ExtResource("2_mx8sn")]
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_ppgk2")]
+
+[node name="Label" parent="CanvasLayer" index="0"]
+offset_left = -22.0
+offset_top = -11.0
+offset_right = 26.0
+offset_bottom = 12.0
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_w8frs")]
+position = Vector2(155, 481)
+
+[node name="CameraManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_2r41h")]
+player = NodePath("../Player")
+
+[node name="MainCamera" parent="CameraManager" index="0"]
+limit_left = -180
+limit_top = 24
+limit_right = 2380
+limit_bottom = 1464
+
+[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+
+[editable path="CanvasLayer"]
+[editable path="CameraManager"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjwc2tvuj225w"]
+
+[ext_resource type="Script" uid="uid://dwccsx4wr5m4x" path="res://scenes/player/camera_2d.gd" id="1_0pkoq"]
+
+[node name="CameraSystem" type="Node2D"]
+
+[node name="CameraManager" type="Node2D" parent="."]
+
+[node name="MainCamera2" type="Camera2D" parent="." groups=["MainCamera"]]
+zoom = Vector2(5, 5)
+limit_left = 0
+limit_top = 0
+limit_right = 2560
+limit_bottom = 1440
+rotation_smoothing_enabled = true
+script = ExtResource("1_0pkoq")

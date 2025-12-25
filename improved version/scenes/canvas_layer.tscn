@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmsevaxxb2io3"]
+
+[ext_resource type="Script" uid="uid://h1e1fqmym0ou" path="res://scenes/canvas_layer.gd" id="1_c4rma"]
+
+[node name="CanvasLayer" type="Node2D"]
+z_index = 1
+script = ExtResource("1_c4rma")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 49.68
+offset_bottom = 23.0
+text = "Dr0n3"

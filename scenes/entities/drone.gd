@@ -38,7 +38,7 @@ func _on_detection_area_body_exited(_player_body: CharacterBody2D) -> void:
     
 func _on_explosion_area_body_entered(_body: Node2D) -> void: 
     if !alive: return
-    explode()
+    #explode()
     
     
 func explode():
